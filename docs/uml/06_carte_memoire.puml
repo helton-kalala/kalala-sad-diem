@@ -1,0 +1,13 @@
+@startuml
+skinparam monochrome true
+skinparam shadowing false
+rectangle "Chapitre I\nFondements : vulnérabilité,\ndonnées mixtes, non supervisé,\nvalidation, SAD" as C1
+rectangle "Chapitre II\nDIEM R5 → 14 variables → 4 dimensions\nGower → PAM/CAH → validation\nscore et rang" as C2
+rectangle "Chapitre III\nPAM k=2 retenu\n2 profils\npriorisation et sensibilité" as C3
+rectangle "Chapitre IV\nPrototype local\nconsultation, filtres, synthèses,\nsuivi, export, traçabilité" as C4
+rectangle "Conclusion\napports, limites, perspectives" as C5
+C1 --> C2
+C2 --> C3
+C3 --> C4
+C4 --> C5
+@enduml

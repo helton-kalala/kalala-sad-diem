@@ -1,0 +1,26 @@
+@startuml
+skinparam monochrome true
+skinparam shadowing false
+start
+:Lire le fichier DIEM;
+:Auditer la source;
+:Construire les 14 variables actives;
+:Orienter et agréger en 4 dimensions;
+:Calculer la matrice de Gower;
+fork
+  :Exécuter PAM pour k=2..6;
+fork again
+  :Exécuter CAH moyenne pour k=2..6;
+end fork
+:Calculer silhouette, Dunn et stabilité ARI;
+if (Groupe minimal >= 5 % ?) then (oui)
+  :Comparer les solutions admissibles;
+else (non)
+  :Rejeter la solution;
+endif
+:Retenir la partition;
+:Caractériser les profils;
+:Calculer score et rang séparément;
+:Écrire les sorties versionnées;
+stop
+@enduml

@@ -1,0 +1,27 @@
+@startuml
+skinparam monochrome true
+skinparam shadowing false
+component "Source CSV DIEM" as CSV
+component "run_pipeline.py" as RP
+component "data_io.py" as DIO
+component "features.py" as F
+component "gower_distance.py" as G
+component "clustering.py" as C
+component "validation.py" as V
+component "reporting.py" as R
+database "Référentiel local\nCSV / JSON / NPY / PNG" as REPO
+component "app.py\nStreamlit" as APP
+actor Gestionnaire
+
+CSV --> RP
+RP --> DIO
+RP --> F
+RP --> G
+RP --> C
+RP --> V
+RP --> R
+RP --> REPO
+REPO --> APP
+Gestionnaire --> APP
+APP --> REPO : suivi / lecture
+@enduml

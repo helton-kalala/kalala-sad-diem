@@ -1,0 +1,31 @@
+@startuml
+left to right direction
+skinparam monochrome true
+skinparam shadowing false
+actor Analyste
+actor Gestionnaire
+
+rectangle "SAD DIEM" {
+  usecase "Contrôler la source" as UC1
+  usecase "Exécuter le pipeline" as UC2
+  usecase "Consulter les profils" as UC3
+  usecase "Filtrer les ménages" as UC4
+  usecase "Choisir une capacité\nde vérification" as UC5
+  usecase "Consulter une fiche\npseudonymisée" as UC6
+  usecase "Enregistrer un suivi" as UC7
+  usecase "Exporter une vue" as UC8
+  usecase "Consulter la traçabilité" as UC9
+  usecase "Analyser un nouveau\nfichier compatible" as UC10
+}
+Analyste --> UC1
+Analyste --> UC2
+Analyste --> UC9
+Analyste --> UC10
+Gestionnaire --> UC3
+Gestionnaire --> UC4
+Gestionnaire --> UC5
+Gestionnaire --> UC6
+Gestionnaire --> UC7
+Gestionnaire --> UC8
+Gestionnaire --> UC9
+@enduml

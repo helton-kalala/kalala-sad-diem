@@ -1,0 +1,19 @@
+@startuml
+skinparam monochrome true
+skinparam shadowing false
+node "Poste Windows 10/11 x64" {
+  artifact "SAD_DIEM.exe" as EXE
+  node "Serveur local Streamlit\n127.0.0.1:8501" as ST
+  node "Navigateur Web" as NAV
+  folder "Projet local" {
+    artifact "app.py"
+    artifact "run_pipeline.py"
+    folder "src/"
+    folder "config/"
+    folder "outputs/"
+    folder "runs/"
+  }
+}
+EXE --> ST : démarrer
+ST --> NAV : interface locale
+@enduml

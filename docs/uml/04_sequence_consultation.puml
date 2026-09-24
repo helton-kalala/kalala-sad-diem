@@ -1,0 +1,18 @@
+@startuml
+skinparam monochrome true
+skinparam shadowing false
+actor Gestionnaire
+participant "Interface Streamlit\napp.py" as UI
+database "Référentiel local\nCSV / JSON" as Repo
+
+Gestionnaire -> UI : choisir exécution et filtres
+UI -> Repo : lire classement et profils
+Repo --> UI : DataFrames / JSON
+UI -> UI : filtrer en mémoire
+UI --> Gestionnaire : afficher liste / fiche / synthèse
+
+Gestionnaire -> UI : enregistrer statut + observation
+UI -> Repo : écrire suivi_verification_local.csv
+Repo --> UI : confirmation
+UI --> Gestionnaire : suivi enregistré
+@enduml

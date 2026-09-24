@@ -1,0 +1,55 @@
+﻿# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Secrets
+.env
+.env.*
+*.key
+*.pem
+.streamlit/secrets.toml
+runtime/.diem_salt
+
+# Local runtime/data/results
+runtime/*
+!runtime/.gitkeep
+data/*
+!data/imports/
+data/imports/*
+!data/imports/.gitkeep
+outputs/*
+!outputs/.gitkeep
+runs/*
+!runs/.gitkeep
+
+# Build / installers
+build/
+dist/
+release/
+*.exe
+*.msi
+
+# Data / analytical objects
+*.csv
+*.xlsx
+*.xls
+*.parquet
+*.sav
+*.dta
+*.npy
+*.npz
+*.pkl
+*.pickle
+
+# Old technical files
+PATCH_*
+BUILD_SETUP_*
+CORRECTIF_*
+OUTIL_*
+backup_*
+_archives_techniques/
+app_ancien*
+app_v2_*

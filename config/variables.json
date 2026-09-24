@@ -1,0 +1,188 @@
+{
+  "id_candidates": ["survey_id", "OBJECTID"],
+  "weight_candidates": ["weight_final", "poids_final", "weight"],
+  "supplementary": [
+    "adm1_name", "hh_gender", "hh_residencetype", "income_main",
+    "fcg", "hdds_class", "rcsi_class", "lcsi_class", "hhg",
+    "need", "need_assistance", "need_received_food", "need_received_cash",
+    "need_received_none"
+  ],
+  "direct_features": [
+    {
+      "name": "fies_probability",
+      "sources": ["p_mod"],
+      "dimension": "acces_consommation",
+      "kind": "numeric",
+      "expected_min": 0,
+      "expected_max": 1,
+      "direction": "higher_worse",
+      "label": "Probabilite FIES d'insecurite alimentaire moderee ou grave"
+    },
+    {
+      "name": "food_consumption",
+      "sources": ["fcs"],
+      "dimension": "acces_consommation",
+      "kind": "numeric",
+      "expected_min": 0,
+      "expected_max": 112,
+      "direction": "lower_worse",
+      "label": "Score de consommation alimentaire"
+    },
+    {
+      "name": "dietary_diversity",
+      "sources": ["hdds_score"],
+      "dimension": "acces_consommation",
+      "kind": "numeric",
+      "expected_min": 0,
+      "expected_max": 12,
+      "direction": "lower_worse",
+      "label": "Score de diversite alimentaire du menage"
+    },
+    {
+      "name": "household_hunger",
+      "sources": ["hhs"],
+      "dimension": "acces_consommation",
+      "kind": "ordinal",
+      "expected_min": 0,
+      "expected_max": 6,
+      "direction": "higher_worse",
+      "label": "Echelle de faim du menage"
+    },
+    {
+      "name": "reduced_coping",
+      "sources": ["rcsi_score"],
+      "dimension": "strategies_adaptation",
+      "kind": "numeric",
+      "expected_min": 0,
+      "expected_max": 56,
+      "direction": "higher_worse",
+      "label": "Indice reduit des strategies d'adaptation"
+    },
+    {
+      "name": "livelihood_coping",
+      "sources": ["lcsi"],
+      "dimension": "strategies_adaptation",
+      "kind": "ordinal",
+      "expected_min": 0,
+      "expected_max": 3,
+      "direction": "higher_worse",
+      "label": "Indice des strategies liees aux moyens d'existence"
+    },
+    {
+      "name": "income_capacity",
+      "sources": ["tot_income", "tot_income_usd"],
+      "dimension": "capacites_structurelles",
+      "kind": "numeric_log",
+      "expected_min": 0,
+      "direction": "lower_worse",
+      "label": "Revenu total declare sur la periode de reference"
+    }
+  ],
+  "ordinal_features": [
+    {
+      "name": "education_capacity",
+      "source": "hh_education",
+      "dimension": "capacites_structurelles",
+      "direction": "lower_worse",
+      "label": "Niveau d'instruction du chef de menage",
+      "coding_note": "Ordre croissant des trois modalites publiees dans le dictionnaire FAO RDC DIEM R5.",
+      "mapping": {
+        "aucune education": 0,
+        "no education": 0,
+        "education de base": 1,
+        "basic education": 1,
+        "etudes superieures achevees (universite, institut superieur)": 2,
+        "university": 2,
+        "completed higher education (university, college) degree": 2
+      }
+    },
+    {
+      "name": "water_deprivation",
+      "source": "hh_wealth_water",
+      "dimension": "capacites_structurelles",
+      "direction": "higher_worse",
+      "label": "Privation associee a la source d'eau",
+      "coding_note": "Codage ordinal explicite : source protegee/sure=0; source de type non precise (spring water)=1; source non protegee, de surface ou declaree unsafe=2. A valider par le guide.",
+      "mapping": {
+        "reseau d'eau courante": 0.0,
+        "piped water": 0.0,
+        "private tap from piped water": 0.0,
+        "eau en bouteille/sachet": 0.0,
+        "bottled water": 0.0,
+        "autre source sure": 0.0,
+        "other safe source": 0.0,
+        "robinet public": 0.0,
+        "public tap": 0.0,
+        "puits protege": 0.0,
+        "protected well": 0.0,
+        "source d'eau": 1.0,
+        "spring water": 1.0,
+        "puits non protege": 2.0,
+        "unprotected well": 2.0,
+        "riviere/lac/source non protegee": 2.0,
+        "river/lake/unprotected spring": 2.0,
+        "river": 2.0,
+        "canal or other surface water": 2.0,
+        "surface water (e.g. canal, ponds, dams)": 2.0,
+        "autre source non sure": 2.0,
+        "other unsafe source": 2.0
+      }
+    },
+    {
+      "name": "sanitation_deprivation",
+      "source": "hh_wealth_toilet",
+      "dimension": "capacites_structurelles",
+      "direction": "higher_worse",
+      "label": "Privation associee au type de toilette",
+      "coding_note": "Rang ordinal selon le niveau de privation sanitaire : chasse d'eau=0; latrine communautaire=1; latrine traditionnelle=2; fosse ouverte=3; aucune toilette/brousse=4. A valider par le guide.",
+      "mapping": {
+        "toilette a chasse d'eau": 0.0,
+        "flush toilet": 0.0,
+        "flush latrine (toilet with water)": 0.0,
+        "latrine communautaire": 1.0,
+        "communal latrine (with or without water)": 1.0,
+        "latrine traditionnelle": 2.0,
+        "traditional latrine": 2.0,
+        "traditional pit latrine (no water)": 2.0,
+        "fosse ouverte": 3.0,
+        "open pit (hole in the ground for excrement without water, roof or wall)": 3.0,
+        "open pit (whole in the ground for excrement without water, roof or wall)": 3.0,
+        "pas de toilette / nature": 4.0,
+        "no toilet/open defecation": 4.0,
+        "none - bush": 4.0,
+        "none – bush": 4.0,
+        "none, bush": 4.0
+      }
+    }
+  ],
+  "shock_groups": {
+    "shock_conflit": [
+      "shock_violenceinsecconf", "shock_mvtrestrict", "shock_theftofprodassets",
+      "shock_firemanmade", "shock_othermanmadehazard"
+    ],
+    "shock_economique": [
+      "shock_higherfoodprices", "shock_higherfuelprices", "shock_lostemplorwork",
+      "shock_othereconomicshock"
+    ],
+    "shock_climatique": [
+      "shock_drought", "shock_flood", "shock_coldtemporhail", "shock_hurricane",
+      "shock_earthquake", "shock_landslides", "shock_firenatural", "shock_othernathazard"
+    ],
+    "shock_menage_production": [
+      "shock_sicknessordeathofhh", "shock_pestoutbreak", "shock_plantdisease",
+      "shock_animaldisease", "shock_napasture", "shock_othercropandlivests",
+      "shock_otherintrahhshock"
+    ]
+  },
+  "required_dimensions": [
+    "acces_consommation",
+    "capacites_structurelles",
+    "strategies_adaptation",
+    "exposition_chocs"
+  ],
+  "minimum_mapping_coverage": 0.80,
+  "maximum_active_missing_rate": 0.40,
+  "minimum_dimension_feature_fraction": 0.50,
+  "minimum_dimensions_for_score": 3,
+  "minimum_dimension_count": 4
+}
